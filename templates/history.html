@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Stock Symbol</th>
+            <th>Qty. of Shares</th>
+            <th>Share Price</th>
+            <th></th>
+            <th>Time</th>
+            <th>Type</th>
+        </tr>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock['symbol'].upper() }}</td>
+                <td>{{ stock['shares'] }}</td>
+                <td>{{ stock['price'] | usd}}</td>
+                <td>{{ stock['transacted'] }}</td>
+                <td>{{ stock['type'] }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<script src="{{url_for('static', filename='button.js')}}"></script>
+{% endblock %}
